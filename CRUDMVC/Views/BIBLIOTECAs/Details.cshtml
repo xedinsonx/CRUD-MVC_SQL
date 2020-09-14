@@ -1,0 +1,34 @@
+﻿@model CRUDMVC.Models.BIBLIOTECA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BIBLIOTECA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIRO.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIRO.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.CONTRASEÑA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.CONTRASEÑA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

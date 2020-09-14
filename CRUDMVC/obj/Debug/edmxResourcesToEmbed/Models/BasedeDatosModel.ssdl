@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BIBLIOTECAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BIBLIOTECA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="30" />
+    <Property Name="ID_LIBRO" Type="int" />
+  </EntityType>
+  <EntityType Name="LIRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar(max)" />
+    <Property Name="AUTOR" Type="char" MaxLength="30" />
+    <Property Name="FECHA" Type="datetime" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="NOMBRE" />
+    </Key>
+    <Property Name="NOMBRE" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="CONTRASEÑA" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__BIBLIOTEC__ID_LI__2A4B4B5E">
+    <End Role="LIRO" Type="Self.LIRO" Multiplicity="0..1" />
+    <End Role="BIBLIOTECA" Type="Self.BIBLIOTECA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LIRO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BIBLIOTECA">
+        <PropertyRef Name="ID_LIBRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BIBLIOTEC__NOMBR__29572725">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="BIBLIOTECA" Type="Self.BIBLIOTECA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="NOMBRE" />
+      </Principal>
+      <Dependent Role="BIBLIOTECA">
+        <PropertyRef Name="NOMBRE_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BIBLIOTECAModelStoreContainer">
+    <EntitySet Name="BIBLIOTECA" EntityType="Self.BIBLIOTECA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LIRO" EntityType="Self.LIRO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BIBLIOTEC__ID_LI__2A4B4B5E" Association="Self.FK__BIBLIOTEC__ID_LI__2A4B4B5E">
+      <End Role="LIRO" EntitySet="LIRO" />
+      <End Role="BIBLIOTECA" EntitySet="BIBLIOTECA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BIBLIOTEC__NOMBR__29572725" Association="Self.FK__BIBLIOTEC__NOMBR__29572725">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="BIBLIOTECA" EntitySet="BIBLIOTECA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
